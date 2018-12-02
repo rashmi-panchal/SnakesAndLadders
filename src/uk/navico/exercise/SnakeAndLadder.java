@@ -8,7 +8,7 @@ public class SnakeAndLadder {
 
 	public static void main(String[] args) throws IOException {
 		
-		BufferedReader userInput = new BufferedReader (new InputStreamReader (System.in));
+        BufferedReader userInput = new BufferedReader (new InputStreamReader (System.in));
 		
 		// Print the welcome screen and instructions
         System.out.println ("\t\t\t\t\t\tWelcome To Snakes And Ladders\n\n");
@@ -34,13 +34,11 @@ public class SnakeAndLadder {
         String userChoice = userInput.readLine();
         
         if(userChoice != "" && userChoice.equals("y") || userChoice.equals("Y")) {
-        
         	//Start the game with given user.
         	new SnakeAndLadder().start(player);
         }
         
         System.out.println("\n Thank you !!!");
-        
         userInput.close();
 	}
 	
@@ -52,9 +50,7 @@ public class SnakeAndLadder {
 		while(player.getToken() < Board.winPosition) {
 			
 			System.out.println("\n Press any key to continue or Exit to quit the game.");
-			
 			String userChoice = userInput.readLine();
-			
 			if(userChoice.toLowerCase().equals("exit")){
 				break;
 			}
@@ -63,6 +59,8 @@ public class SnakeAndLadder {
 			int diceNumber = Dice.roll();
 				
 			int updatedPosition = player.getToken() + diceNumber;
+			//We can add a logic to move a token after considering snakes and ladder positions.
+			
 			if(updatedPosition <= Board.winPosition) {
 				player.setToken(updatedPosition);
 			}
