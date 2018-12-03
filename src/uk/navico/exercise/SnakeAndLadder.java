@@ -10,7 +10,7 @@ public class SnakeAndLadder {
 		
         BufferedReader userInput = new BufferedReader (new InputStreamReader (System.in));
 		
-		// Print the welcome screen and instructions
+        // Print the welcome screen and instructions
         System.out.println ("\t\t\t\t\t\tWelcome To Snakes And Ladders\n\n");
         System.out.println ("\t\t\t\t\t\t\tInstructions:");
         System.out.println ("\t\t\tThis program will simulate a regular snakes and ladders game.");
@@ -27,37 +27,36 @@ public class SnakeAndLadder {
         System.out.println("Please enter your name:");
         
         String playerName = userInput.readLine();
-        
         Player player = new Player(playerName);
         
-        System.out.println("\n"+"Hi "+playerName+", do you want to start the game ? Y or N :");
+        System.out.println("\nPress any key to continue or 'Exit' to quit the game.");
         String userChoice = userInput.readLine();
         
-        if(userChoice != "" && userChoice.equals("y") || userChoice.equals("Y")) {
-        	//Start the game with given user.
-        	new SnakeAndLadder().start(player);
-        }
+		if(!userChoice.toLowerCase().equals("exit")){
+			new SnakeAndLadder().start(player, userInput);
+		}
         
-        System.out.println("\n Thank you !!!");
+        System.out.println("\nThank you !!!");
         userInput.close();
 	}
 	
-	private void start(Player player) throws IOException {
-		BufferedReader userInput = new BufferedReader (new InputStreamReader (System.in));
+	private void start(Player player, BufferedReader userInput) throws IOException {
+		String playerName = player.getName();
+		int playerToken = player.getToken();
 		
-		System.out.println("\n"+player.getName()+" is at position "+player.getToken());
+		System.out.println("\n"+playerName+" is at position "+playerToken);
 		
-		while(player.getToken() < Board.winPosition) {
-			
-			System.out.println("\n Press any key to continue or Exit to quit the game.");
+		while(player.getToken() < Board.winPosition) {	
+			System.out.println("\nPress any key to continue or 'Exit' to quit the game.");
 			String userChoice = userInput.readLine();
 			if(userChoice.toLowerCase().equals("exit")){
 				break;
 			}
 			
-			System.out.println("Rolling dice for "+player.getName());
+			System.out.println("Rolling dice for "+playerName+"...");
 			int diceNumber = Dice.roll();
-				
+			
+			System.out.println("\nDice number for "+playerName+" is: "+diceNumber);
 			int updatedPosition = player.getToken() + diceNumber;
 			//We can add a logic to move a token after considering snakes and ladder positions.
 			
@@ -65,13 +64,12 @@ public class SnakeAndLadder {
 				player.setToken(updatedPosition);
 			}
 				
-			System.out.println("\n"+player.getName()+" is at position: "+player.getToken());
+			System.out.println("\n"+playerName+" is at position: "+player.getToken());
 		}
 		
 		if(player.getToken() == Board.winPosition) {
-		    System.out.println("\n Congratulations "+ player.getName()+", you won !!!");
+		    System.out.println("\nCongratulations "+playerName+", you won !!!");
 		}
-		userInput.close();
 	}
 
 }

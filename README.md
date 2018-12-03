@@ -20,3 +20,9 @@ I envision the utilization of player object to extend the game to multi-player v
 I also envision the extension of board class to include other aspects of the board configuration - for example, the position of snakes and ladders.
 These snakes and ladders can be treated in a similar way - for example, snakes can be treated as inverse directed ladders or vice versa.
 The SnakesAndLadders class would be enhanced to deal with multiple players and to advise each player on their turn to play, along with the decision on when a player has won and the game needs to be stopped.
+
+Steps to run the solution :
+	1. Download or clone the repository
+	2. Go to root folder and run : javac src/uk/navico/exercise/*.java
+	3. Then go to src folder and run : java uk.navico.exercise.SnakeAndLadder
+	4. Well the game is started now !!
